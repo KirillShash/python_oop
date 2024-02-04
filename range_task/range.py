@@ -24,3 +24,15 @@ class Range:
 
     def is_inside(self, number: float) -> bool:
         return self.__start <= number <= self.__end
+
+    def get_intersection_interval(self, input_range):
+        max_start = max(self.__start, input_range.start)
+        max_end = max(self.__end, input_range.end)
+
+        if max_start < max_end:
+            return Range(max_start, max_end)
+
+        return None
+
+    def __str__(self):
+        return f'({self.__start}, {self.__end})'

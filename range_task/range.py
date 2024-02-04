@@ -19,8 +19,8 @@ class Range:
     def end(self, end: float):
         self.__end = end
 
-    def __str__(self):
-        return f'({self.__start}, {self.__end})'
+    def __repr__(self):
+        return f'({self.__start}; {self.__end})'
 
     def get_length(self) -> float:
         return self.__end - self.__start
@@ -45,3 +45,18 @@ class Range:
             return [Range(min(self.__start, input_range.start), max(self.__end, input_range.end))]
 
         return [Range(self.start, self.end), Range(input_range.start, input_range.end)]
+
+    def get_difference(self, input_range):
+        if input_range.start > self.__start and input_range.end < self.__end:
+            return [Range(self.start, input_range.start), Range(input_range.end, self.__end)]
+
+        if input_range.start <= self.start and input_range.end >= self.end:
+            return []
+
+        if input_range.start <= self.__start < input_range.end:
+            return [Range(input_range.end, self.end)]
+
+        if input_range.end >= self.end and input_range.start < self.__end:
+            return [Range(self.__start, input_range.start)]
+
+        return [Range(self.start, self.end)]

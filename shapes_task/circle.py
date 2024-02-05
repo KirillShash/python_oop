@@ -8,7 +8,7 @@ class Circle(Shape):
         self.__radius = radius
 
     @property
-    def radius(self):
+    def radius(self) -> float:
         return self.__radius
 
     @radius.setter
@@ -21,10 +21,10 @@ class Circle(Shape):
     def get_height(self) -> float:
         return self.__radius * 2
 
-    def get_area(self):
+    def get_area(self) -> float:
         return math.pi * math.pow(self.__radius, 2)
 
-    def get_perimeter(self):
+    def get_perimeter(self) -> float:
         return 2 * math.pi * self.__radius
 
     def __repr__(self):

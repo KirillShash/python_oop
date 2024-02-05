@@ -34,7 +34,7 @@ class Square(Shape):
 
     @override
     def __repr__(self):
-        return f'square with side length = {self.__side_length}'
+        return f'Square with side length = {self.__side_length}'
 
     @override
     def __eq__(self, other):

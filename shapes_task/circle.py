@@ -34,7 +34,7 @@ class Circle(Shape):
 
     @override
     def __repr__(self):
-        return f'circle with radius = {self.__radius}'
+        return f'Circle with radius = {self.__radius}'
 
     @override
     def __eq__(self, other):

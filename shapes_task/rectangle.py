@@ -41,7 +41,7 @@ class Rectangle(Shape):
 
     @override
     def __repr__(self):
-        return f'rectangle with sides lengths = [{self.__height}; {self.width}]'
+        return f'Rectangle with sides lengths = [{self.__height}; {self.width}]'
 
     @override
     def __eq__(self, other):

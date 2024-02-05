@@ -31,3 +31,18 @@ class Square(Shape):
     @override
     def get_perimeter(self) -> float:
         return self.__side_length * 4
+
+    @override
+    def __repr__(self):
+        return f'square with side length = {self.__side_length}'
+
+    @override
+    def __eq__(self, other):
+        if not isinstance(other, type(self)):
+            return NotImplemented
+
+        return self.__side_length == other.__side_length
+
+    @override
+    def __hash__(self):
+        return hash(self.__side_length)

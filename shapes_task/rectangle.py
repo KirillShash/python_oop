@@ -38,3 +38,18 @@ class Rectangle(Shape):
     @override
     def get_perimeter(self) -> float:
         return (self.__width + self.__height) * 2
+
+    @override
+    def __repr__(self):
+        return f'rectangle with sides lengths = [{self.__height}; {self.width}]'
+
+    @override
+    def __eq__(self, other):
+        if not isinstance(other, type(self)):
+            return NotImplemented
+
+        return self.__height == other.__height and self.__width == other.__width
+
+    @override
+    def __hash__(self):
+        return hash((self.__height, self.__width))

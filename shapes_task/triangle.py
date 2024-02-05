@@ -1,15 +1,20 @@
+from typing import override
 from shape import Shape
 
 
 class Triangle(Shape):
-    def get_width(self):
+    @override
+    def get_width(self) -> float:
         pass
 
-    def get_height(self):
+    @override
+    def get_height(self) -> float:
         pass
 
-    def get_area(self):
+    @override
+    def get_area(self) -> float:
         pass
 
-    def get_perimeter(self):
+    @override
+    def get_perimeter(self) -> float:
         pass

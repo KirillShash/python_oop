@@ -35,6 +35,30 @@ class Triangle(Shape):
     def x_3(self, x_3: float):
         self.__x_3 = x_3
 
+    @property
+    def y_1(self) -> float:
+        return self.__y_1
+
+    @y_1.setter
+    def y_1(self, y_1: float):
+        self.__y_1 = y_1
+
+    @property
+    def y_2(self) -> float:
+        return self.__y_2
+
+    @y_2.setter
+    def y_2(self, y_2: float):
+        self.__y_2 = y_2
+
+    @property
+    def y_3(self) -> float:
+        return self.__y_3
+
+    @y_3.setter
+    def y_3(self, y_3: float):
+        self.__y_3 = y_3
+
     @override
     def get_width(self) -> float:
         return max(self.__x_1, self.__x_2, self.__x_3) - min(self.__x_1, self.__x_2, self.__x_3)

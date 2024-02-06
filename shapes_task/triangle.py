@@ -70,11 +70,22 @@ class Triangle(Shape):
 
     @override
     def get_area(self) -> float:
-        pass
+        side_1_length = get_side_length(self.__x_1, self.__y_1, self.__x_2, self.__y_2)
+        side_2_length = get_side_length(self.__x_2, self.__y_2, self.__x_3, self.__y_3)
+        side_3_length = get_side_length(self.__x_1, self.__y_1, self.__x_3, self.__y_3)
+
+        half_perimeter = (side_1_length + side_2_length + side_3_length) / 2
+
+        return math.sqrt(half_perimeter * (half_perimeter - side_1_length) * (half_perimeter - side_2_length)
+                         * (half_perimeter - side_3_length))
 
     @override
     def get_perimeter(self) -> float:
-        pass
+        side_1_length = get_side_length(self.__x_1, self.__y_1, self.__x_2, self.__y_2)
+        side_2_length = get_side_length(self.__x_2, self.__y_2, self.__x_3, self.__y_3)
+        side_3_length = get_side_length(self.__x_1, self.__y_1, self.__x_3, self.__y_3)
+
+        return side_1_length + side_2_length + side_3_length
 
     @override
     def __repr__(self):
@@ -98,5 +109,5 @@ class Triangle(Shape):
         return hash((self.__x_1, self.__y_1, self.__x_2, self.__y_2, self.__x_3, self.__y_3))
 
 
-def get_side_length(x_1: float, y_1: float, x_2: float, y_2: float):
+def get_side_length(x_1: float, y_1: float, x_2: float, y_2: float) -> float:
     return math.sqrt(math.pow(x_2 - x_1, 2) + math.pow(y_2 - y_1, 2))

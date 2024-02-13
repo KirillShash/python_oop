@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+import math
 from typing import override
 from multipledispatch import dispatch
 
@@ -39,6 +41,15 @@ class Vector:
     @property
     def dimension(self) -> int:
         return self.__dimension
+
+    @property
+    def length(self) -> float:
+        components_sum = 0
+
+        for component in self.__components:
+            components_sum += component * component
+
+        return math.sqrt(components_sum)
 
     @override
     def __repr__(self):

@@ -53,4 +53,9 @@ class Vector:
 
     @override
     def __repr__(self):
-        return f'{self.__components}'
+        string = '{'
+
+        for i in self.__components:
+            string += str(i) + ', '
+
+        return string[:-2] + '}'

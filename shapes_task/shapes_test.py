@@ -8,7 +8,7 @@ from typing import List
 
 def get_shape_with_max_area(shapes: List[Shape]) -> Shape:
     if len(shapes) == 0:
-        raise Exception('List is empty.')
+        raise ValueError('List is empty.')
 
     shapes.sort(key=lambda shape: shape.get_area())
 
@@ -17,7 +17,7 @@ def get_shape_with_max_area(shapes: List[Shape]) -> Shape:
 
 def get_shape_with_second_max_perimeter(shapes: List[Shape]) -> Shape:
     if len(shapes) < 1:
-        raise Exception(f'The list must contain at least two shapes. The current list contains {len(shapes)} shapes.')
+        raise ValueError(f'The list must contain at least two shapes. The current list contains {len(shapes)} shapes.')
 
     shapes.sort(key=lambda shape: shape.get_area())
 

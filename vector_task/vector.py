@@ -1,8 +1,8 @@
 from __future__ import annotations
-
-import math
 from typing import override
 from multipledispatch import dispatch
+
+import math
 
 
 class Vector:

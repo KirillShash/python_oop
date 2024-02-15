@@ -19,7 +19,7 @@ def get_shape_with_second_max_perimeter(shapes: List[Shape]) -> Shape:
     if len(shapes) < 1:
         raise ValueError(f'The list must contain at least two shapes. The current list contains {len(shapes)} shapes.')
 
-    shapes.sort(key=lambda shape: shape.get_area())
+    shapes.sort(key=lambda shape: shape.get_perimeter())
 
     return shapes[len(shapes) - 2]
 

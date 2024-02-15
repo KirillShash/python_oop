@@ -68,11 +68,15 @@ class Triangle(Shape):
     def get_height(self) -> float:
         return max(self.__y_1, self.__y_2, self.__y_3) - min(self.__y_1, self.__y_2, self.__y_3)
 
+    @staticmethod
+    def __get_side_length(x_1: float, y_1: float, x_2: float, y_2: float) -> float:
+        return math.sqrt(math.pow(x_2 - x_1, 2) + math.pow(y_2 - y_1, 2))
+
     @override
     def get_area(self) -> float:
-        side_1_length = get_side_length(self.__x_1, self.__y_1, self.__x_2, self.__y_2)
-        side_2_length = get_side_length(self.__x_2, self.__y_2, self.__x_3, self.__y_3)
-        side_3_length = get_side_length(self.__x_1, self.__y_1, self.__x_3, self.__y_3)
+        side_1_length = self.__get_side_length(self.__x_1, self.__y_1, self.__x_2, self.__y_2)
+        side_2_length = self.__get_side_length(self.__x_2, self.__y_2, self.__x_3, self.__y_3)
+        side_3_length = self.__get_side_length(self.__x_1, self.__y_1, self.__x_3, self.__y_3)
 
         half_perimeter = (side_1_length + side_2_length + side_3_length) / 2
 
@@ -81,9 +85,9 @@ class Triangle(Shape):
 
     @override
     def get_perimeter(self) -> float:
-        side_1_length = get_side_length(self.__x_1, self.__y_1, self.__x_2, self.__y_2)
-        side_2_length = get_side_length(self.__x_2, self.__y_2, self.__x_3, self.__y_3)
-        side_3_length = get_side_length(self.__x_1, self.__y_1, self.__x_3, self.__y_3)
+        side_1_length = self.__get_side_length(self.__x_1, self.__y_1, self.__x_2, self.__y_2)
+        side_2_length = self.__get_side_length(self.__x_2, self.__y_2, self.__x_3, self.__y_3)
+        side_3_length = self.__get_side_length(self.__x_1, self.__y_1, self.__x_3, self.__y_3)
 
         return side_1_length + side_2_length + side_3_length
 
@@ -107,7 +111,3 @@ class Triangle(Shape):
     @override
     def __hash__(self):
         return hash((self.__x_1, self.__y_1, self.__x_2, self.__y_2, self.__x_3, self.__y_3))
-
-
-def __get_side_length(x_1: float, y_1: float, x_2: float, y_2: float) -> float:
-    return math.sqrt(math.pow(x_2 - x_1, 2) + math.pow(y_2 - y_1, 2))

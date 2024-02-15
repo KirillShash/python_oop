@@ -109,5 +109,5 @@ class Triangle(Shape):
         return hash((self.__x_1, self.__y_1, self.__x_2, self.__y_2, self.__x_3, self.__y_3))
 
 
-def get_side_length(x_1: float, y_1: float, x_2: float, y_2: float) -> float:
+def __get_side_length(x_1: float, y_1: float, x_2: float, y_2: float) -> float:
     return math.sqrt(math.pow(x_2 - x_1, 2) + math.pow(y_2 - y_1, 2))

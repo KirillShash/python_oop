@@ -29,7 +29,7 @@ class Rectangle(Shape):
 
     @override
     def get_height(self) -> float:
-        return self.height
+        return self.__height
 
     @override
     def get_area(self) -> float:
@@ -41,7 +41,7 @@ class Rectangle(Shape):
 
     @override
     def __repr__(self):
-        return f'Rectangle with sides lengths = [{self.__height}; {self.width}]'
+        return f'Rectangle with [height:{self.__height} ; width:{self.__width}]'
 
     @override
     def __eq__(self, other):

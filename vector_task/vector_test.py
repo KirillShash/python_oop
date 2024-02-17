@@ -4,6 +4,44 @@ vector_1 = Vector(5)
 vector_2 = Vector(6, [1, 2, 3, 4])
 vector_3 = Vector(vector_1)
 
-print(vector_1)
-print(vector_2)
-print(vector_3)
+print(f'Vector_1: {vector_1}')
+print(f'Vector_2: {vector_2}')
+print(f'Vector_3: {vector_3}')
+
+vector_4 = Vector([1, 2, 3, 4, 5])
+vector_5 = Vector([1.1, 2.3, 3.4, 4.5, 5.6, 6])
+
+print(f'Vector_4: {vector_4}')
+print(f'Vector_5: {vector_5}')
+
+print()
+
+vector_4.add(vector_5)
+print(f'vector_4.add(vector_5): {vector_4}')
+
+vector_4.sub(vector_5)
+print(f'vector_4.sub(vector_5): {vector_4}')
+
+print(f'vector_4 + vector_5: {vector_4 + vector_5}')
+print(f'vector_4 - vector_5: {vector_4 - vector_5}')
+
+print()
+
+print(f'Vector_4: {vector_4}')
+
+vector_4.multiply_by_scalar(2)
+print(f'vector_4.multiply_by_scalar(2): {vector_4}')
+
+vector_4.reverse()
+print(f'vector_4.reverse(): {vector_4}')
+
+print(f'vector_4.get_component(4): {vector_4.get_component(4)}')
+
+vector_4.set_component(22, 4)
+print(f'vector_4.get_component(4): {vector_4.get_component(4)}')
+
+print()
+
+print(f'Vector_4: {vector_4}')
+print(f'Vector_5: {vector_5}')
+print(f'vector_4.get_scalar_product(vector_5): {vector_4.get_scalar_product(vector_5)}')

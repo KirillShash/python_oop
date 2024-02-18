@@ -53,14 +53,6 @@ class Vector:
         return math.sqrt(components_sum)
 
     @override
-    def __add__(self, other: Vector) -> Vector:
-        return Vector([round(i + j, 2) for i, j in zip_longest(self.__components, other.__components, fillvalue=0.)])
-
-    @override
-    def __sub__(self, other: Vector) -> Vector:
-        return Vector([round(i - j, 2) for i, j in zip_longest(self.__components, other.__components, fillvalue=0.)])
-
-    @override
     def __repr__(self) -> str:
         string = '{'
 
@@ -79,6 +71,12 @@ class Vector:
     @override
     def __hash__(self) -> int:
         return hash((self.__dimension, self.__components))
+
+    def __add__(self, other: Vector) -> Vector:
+        return Vector([round(i + j, 2) for i, j in zip_longest(self.__components, other.__components, fillvalue=0.)])
+
+    def __sub__(self, other: Vector) -> Vector:
+        return Vector([round(i - j, 2) for i, j in zip_longest(self.__components, other.__components, fillvalue=0.)])
 
     def __check_index(self, index: int):
         if index < 0 or index >= self.__dimension:

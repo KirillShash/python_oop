@@ -68,5 +68,5 @@ shape_with_second_max_perimeter = get_shape_with_second_max_perimeter(shapes_lis
 print()
 
 print(f'Shape with max area: {shape_with_max_area} Area = {shape_with_max_area.get_area()}')
-print(f'Shape with max area: {shape_with_second_max_perimeter} Perimeter = '
+print(f'Shape with second max perimeter: {shape_with_second_max_perimeter} Perimeter = '
       f'{shape_with_second_max_perimeter.get_perimeter()}')

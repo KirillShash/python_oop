@@ -7,41 +7,41 @@ import math
 
 
 class Vector:
-    @dispatch(int)
-    def __init__(self, dimension: int):
-        if dimension <= 0:
-            raise ValueError(f'Dimension = {dimension}. The dimension of vector must be greater than 0.')
+    def __init__(self, **kwargs):
+        if 'dimension' in kwargs and 'components' in kwargs:
+            dimension = kwargs.get('dimension')
+            components = kwargs.get('components')
 
-        self.__dimension = dimension
-        self.__components = [0. for _ in range(dimension)]
+            if dimension <= 0:
+                raise ValueError(f'Dimension = {dimension}. The dimension of vector must be greater than 0.')
 
-    @dispatch(int, list)
-    def __init__(self, dimension: int, components: list[float]):
-        if dimension <= 0:
-            raise ValueError(f'Dimension = {dimension}. The dimension of vector must be greater than 0.')
+            self.__components = [0.0 for _ in range(dimension)]
 
-        self.__dimension = dimension
-        self.__components = [0. for _ in range(dimension)]
+            for i, component in enumerate(components):
+                self.__components[i] = component
 
-        for i, component in enumerate(components):
-            self.__components[i] = component
+        elif 'dimension' in kwargs and 'components' not in kwargs:
+            dimension = kwargs.get('dimension')
 
-    @dispatch(list)
-    def __init__(self, components: list[float]):
-        if len(components) == 0:
-            raise ValueError(f'Dimension = {len(components)}. The dimension of vector must be greater than 0.')
+            if dimension <= 0:
+                raise ValueError(f'Dimension = {dimension}. The dimension of vector must be greater than 0.')
 
-        self.__dimension = len(components)
-        self.__components = list(components)
+            self.__components = [0.0 for _ in range(dimension)]
 
-    @dispatch(object)
-    def __init__(self, vector: Vector):
-        self.__dimension = len(vector.__components)
-        self.__components = list(vector.__components)
+        elif 'dimension' not in kwargs and 'components' in kwargs:
+            components = kwargs.get('components')
+
+            if len(components) == 0:
+                raise ValueError(f'Dimension = {len(components)}. The dimension of vector must be greater than 0.')
+
+            self.__components = list(components)
+
+        elif 'vector' in kwargs:
+            self.__components = list(kwargs.get('vector').__components)
 
     @property
     def dimension(self) -> int:
-        return self.__dimension
+        return len(self.__components)
 
     @property
     def length(self) -> float:
@@ -66,7 +66,7 @@ class Vector:
         if isinstance(other, type(self)):
             return NotImplemented
 
-        return self.__dimension == other.__dimension and self.__components == other.__components
+        return self.__components == other.__components
 
     @override
     def __hash__(self) -> int:

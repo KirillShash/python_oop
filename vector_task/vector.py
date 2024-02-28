@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import override, Union, List
+from typing import override, List
 from itertools import zip_longest
 from multimethod import multimethod
 

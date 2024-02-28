@@ -16,29 +16,35 @@ print(f'Vector_5: {vector_5}')
 
 print()
 
-vector_4.add(vector_5)
-print(f'vector_4.add(vector_5): {vector_4}')
-
-vector_4.sub(vector_5)
-print(f'vector_4.sub(vector_5): {vector_4}')
-
 print(f'vector_4 + vector_5: {vector_4 + vector_5}')
 print(f'vector_4 - vector_5: {vector_4 - vector_5}')
 
 print()
 
+vector_4 += vector_5
+print(f'vector_4 += vector_5: {vector_4}')
+
+vector_4 -= vector_5
+print(f'vector_4 -= vector_5: {vector_4}')
+
+print()
+
 print(f'Vector_4: {vector_4}')
 
-vector_4.multiply_by_scalar(2)
-print(f'vector_4.multiply_by_scalar(2): {vector_4}')
+vector_4 *= 2
+print(f'vector_4 *= 2: {vector_4}')
 
 vector_4.reverse()
 print(f'vector_4.reverse(): {vector_4}')
 
-print(f'vector_4.get_component(4): {vector_4.get_component(4)}')
+print()
 
-vector_4.set_component(22, 4)
-print(f'vector_4.get_component(4): {vector_4.get_component(4)}')
+print(f'Vector_4: {vector_4}')
+print(f'vector_4[4]: {vector_4[4]}')
+print(f'vector_4[1:4]: {vector_4[1:4]}')
+
+vector_4[4] = 22
+print(f'vector_4[4] = 22: vector_4: {vector_4}')
 
 print()
 

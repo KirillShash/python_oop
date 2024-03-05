@@ -58,6 +58,37 @@ class Matrix:
 
         self.__vectors = [Vector(columns_count) for _ in range(rows_count)]
 
+    @property
+    def rows_count(self) -> int:
+        return len(self.__vectors)
+
+    @property
+    def columns_count(self) -> int:
+        return self.__vectors[0].dimension
+
     @override
     def __repr__(self) -> str:
         return '{' + ', '.join(map(str, self.__vectors)) + '}'
+
+    def __check_index(self, index: int):
+        if type(index) is not int:
+            raise TypeError(f'The index must be integer')
+
+        if index < 0 or index >= self.columns_count:
+            raise ValueError(f'The index must be equal to or greater than 0 and less than {self.columns_count}')
+
+    def __getitem__(self, item):
+        if isinstance(item, slice):
+            return self.__vectors[item.start:item.stop:item.step]
+
+        self.__check_index(item)
+
+        return self.__vectors[item]
+
+    def __setitem__(self, index: int, value: Vector):
+        if type(value) is not Vector:
+            raise TypeError('The component must be Vector type')
+
+        self.__check_index(index)
+
+        self.__vectors[index] = value

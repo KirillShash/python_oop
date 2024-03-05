@@ -16,3 +16,5 @@ print(f'matrix_4: {matrix_4}')
 print(hash(matrix_2))
 print(matrix_2 == matrix_4)
 print(matrix_2 == matrix_2)
+
+print(matrix_2 + matrix_2)

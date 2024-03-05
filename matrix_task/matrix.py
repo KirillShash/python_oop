@@ -104,3 +104,21 @@ class Matrix:
 
         self.__vectors[index] = value
 
+    def __check_matrices_sizes(self, other: Matrix):
+        if self.rows_count != other.rows_count or self.columns_count != other.columns_count:
+            raise ValueError(f'First matrix size = {self.rows_count}x{self.columns_count}, second matrix size = '
+                             f'{other.rows_count}x{other.columns_count}. Matrices must be the same size.')
+
+    def __add__(self, other: Matrix) -> Matrix:
+        if not isinstance(other, type(self)):
+            return NotImplemented
+
+        self.__check_matrices_sizes(other)
+
+        return Matrix([vector_1 + vector_2 for vector_1, vector_2 in zip(self.__vectors, other.__vectors)])
+
+    def __sub__(self, other: Matrix) -> Matrix:
+        if not isinstance(other, type(self)):
+            return NotImplemented
+
+        return Matrix([vector_1 - vector_2 for vector_1, vector_2 in zip(self.__vectors, other.__vectors)])

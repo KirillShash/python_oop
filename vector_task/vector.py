@@ -93,7 +93,7 @@ class Vector:
 
         return self
 
-    def __isub__(self, other: Vector):
+    def __isub__(self, other: Vector) -> Vector:
         if not isinstance(other, type(self)):
             return NotImplemented
 

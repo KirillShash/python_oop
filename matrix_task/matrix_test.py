@@ -18,3 +18,11 @@ print(matrix_2 == matrix_4)
 print(matrix_2 == matrix_2)
 
 print(matrix_2 + matrix_2)
+
+print(matrix_2[1:])
+
+matrix_2 += matrix_2
+print(matrix_2)
+
+matrix_2 -= matrix_2
+print(matrix_2)

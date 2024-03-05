@@ -122,3 +122,19 @@ class Matrix:
             return NotImplemented
 
         return Matrix([vector_1 - vector_2 for vector_1, vector_2 in zip(self.__vectors, other.__vectors)])
+
+    def __iadd__(self, other: Matrix) -> Matrix:
+        if not isinstance(other, type(self)):
+            return NotImplemented
+
+        self.__vectors = list((self + other).__vectors)
+
+        return self
+
+    def __isub__(self, other: Matrix) -> Matrix:
+        if not isinstance(other, type(self)):
+            return NotImplemented
+
+        self.__vectors = list((self - other).__vectors)
+
+        return self

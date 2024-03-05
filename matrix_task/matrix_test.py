@@ -12,3 +12,7 @@ print(f'matrix_1: {matrix_1}')
 print(f'matrix_2: {matrix_2}')
 print(f'matrix_3: {matrix_3}')
 print(f'matrix_4: {matrix_4}')
+
+print(hash(matrix_2))
+print(matrix_2 == matrix_4)
+print(matrix_2 == matrix_2)

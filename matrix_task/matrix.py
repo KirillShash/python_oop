@@ -70,6 +70,17 @@ class Matrix:
     def __repr__(self) -> str:
         return '{' + ', '.join(map(str, self.__vectors)) + '}'
 
+    @override
+    def __eq__(self, other: Matrix) -> bool:
+        if not isinstance(other, type(self)):
+            return NotImplemented
+
+        return self.__vectors == other.__vectors
+
+    @override
+    def __hash__(self) -> int:
+        return hash(tuple(self.__vectors))
+
     def __check_index(self, index: int):
         if type(index) is not int:
             raise TypeError(f'The index must be integer')
@@ -92,3 +103,4 @@ class Matrix:
         self.__check_index(index)
 
         self.__vectors[index] = value
+

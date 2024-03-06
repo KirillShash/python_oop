@@ -71,6 +71,22 @@ class Vector:
     def __hash__(self) -> int:
         return hash(tuple(self.__components))
 
+    def __iadd__(self, other: Vector) -> Vector:
+        if not isinstance(other, type(self)):
+            return NotImplemented
+
+        self.__components = [i + j for i, j in zip_longest(self.__components, other.__components, fillvalue=0.0)]
+
+        return self
+
+    def __isub__(self, other: Vector) -> Vector:
+        if not isinstance(other, type(self)):
+            return NotImplemented
+
+        self.__components = [i - j for i, j in zip_longest(self.__components, other.__components, fillvalue=0.0)]
+
+        return self
+
     def __add__(self, other: Vector) -> Vector:
         if not isinstance(other, type(self)):
             return NotImplemented
@@ -83,19 +99,11 @@ class Vector:
 
         return Vector([i - j for i, j in zip_longest(self.__components, other.__components, fillvalue=0.0)])
 
-    def __iadd__(self, other: Vector) -> Vector:
-        if not isinstance(other, type(self)):
-            return NotImplemented
+    def __imul__(self, scalar: float | int) -> Vector:
+        if type(scalar) is not (int or float):
+            raise TypeError('The scalar must be integer or float')
 
-        self.__components = list((self + other).__components)
-
-        return self
-
-    def __isub__(self, other: Vector) -> Vector:
-        if not isinstance(other, type(self)):
-            return NotImplemented
-
-        self.__components = list((self - other).__components)
+        self.__components = [component * scalar for component in self.__components]
 
         return self
 
@@ -109,8 +117,9 @@ class Vector:
         if type(index) is not int:
             raise TypeError(f'Entered index type: {type(index)}, but the index must be integer')
 
-        if index < 0 or index >= self.dimension:
-            raise IndexError(f'Entered index = {index}. The index must be equal to or greater than 0 and less than {self.dimension}')
+        if index >= self.dimension:
+            raise IndexError(
+                f'Entered index = {index}. The index must be less than {self.dimension}')
 
     def __getitem__(self, item):
         if isinstance(item, slice):
@@ -129,16 +138,16 @@ class Vector:
         self.__components[index] = value
 
     def reverse(self):
-        return self * -1
+        self.__components = [component * -1 for component in self.__components]
 
     def get_scalar_product(self, other: Vector) -> float:
         if not isinstance(other, type(self)):
             return NotImplemented
 
-        min_size = min(len(self.__components), len(other.__components))
+        min_dimension = min(self.dimension, other.dimension)
         product = 0
 
-        for i in range(min_size):
+        for i in range(min_dimension):
             product += self.__components[i] * other.__components[i]
 
         return product

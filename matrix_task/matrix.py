@@ -68,7 +68,7 @@ class Matrix:
 
     @override
     def __repr__(self) -> str:
-        return '{' + ', '.join(map(str, self.__vectors)) + '}'
+        return '{' + ', '.join([str(vector) for vector in self.__vectors]) + '}'
 
     @override
     def __eq__(self, other: Matrix) -> bool:
@@ -83,10 +83,10 @@ class Matrix:
 
     def __check_index(self, index: int):
         if type(index) is not int:
-            raise TypeError(f'The index must be integer')
+            raise TypeError(f'Entered index type: {type(index)}, but the index must be integer')
 
-        if index < 0 or index >= self.columns_count:
-            raise ValueError(f'The index must be equal to or greater than 0 and less than {self.columns_count}')
+        if index >= self.rows_count:
+            raise IndexError(f'Entered index: {index}. The index must be less than {self.columns_count}')
 
     def __getitem__(self, item):
         if isinstance(item, slice):
@@ -98,7 +98,7 @@ class Matrix:
 
     def __setitem__(self, index: int, value: Vector):
         if type(value) is not Vector:
-            raise TypeError('The component must be Vector type')
+            raise TypeError(f'Entered value type: {type(value)}. The value must be Vector type')
 
         self.__check_index(index)
 
@@ -107,7 +107,7 @@ class Matrix:
     def __check_matrices_sizes(self, other: Matrix):
         if self.rows_count != other.rows_count or self.columns_count != other.columns_count:
             raise ValueError(f'First matrix size = {self.rows_count}x{self.columns_count}, second matrix size = '
-                             f'{other.rows_count}x{other.columns_count}. Matrices must be the same size.')
+                             f'{other.rows_count}x{other.columns_count}. Matrices must have the same dimensions.')
 
     def __add__(self, other: Matrix) -> Matrix:
         if not isinstance(other, type(self)):

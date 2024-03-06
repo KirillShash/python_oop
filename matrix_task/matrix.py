@@ -127,7 +127,7 @@ class Matrix:
         if not isinstance(other, type(self)):
             return NotImplemented
 
-        self.__vectors = list((self + other).__vectors)
+        self.__vectors = [vector_1 + vector_2 for vector_1, vector_2 in zip(self.__vectors, other.__vectors)]
 
         return self
 
@@ -135,6 +135,6 @@ class Matrix:
         if not isinstance(other, type(self)):
             return NotImplemented
 
-        self.__vectors = list((self - other).__vectors)
+        self.__vectors = [vector_1 - vector_2 for vector_1, vector_2 in zip(self.__vectors, other.__vectors)]
 
         return self

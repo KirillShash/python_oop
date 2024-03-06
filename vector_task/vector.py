@@ -20,16 +20,14 @@ class Vector:
         if dimension <= 0:
             raise ValueError(f'Dimension = {dimension}. The dimension of vector must be greater than 0.')
 
-        self.__components = [0.0 for _ in range(dimension)]
+        self.__components = [0.0] * dimension
 
     @multimethod
     def __init__(self, dimension: int, components: List[int | float]):
         if dimension <= 0:
             raise ValueError(f'Dimension = {dimension}. The dimension of vector must be greater than 0.')
 
-        max_dimension = max(dimension, len(components))
-
-        self.__components = [0.0 for _ in range(max_dimension)]
+        self.__components = [0.0] * dimension
 
         for i, component in enumerate(components):
             self.__components[i] = component
@@ -51,16 +49,16 @@ class Vector:
 
     @property
     def length(self) -> float:
-        summa = 0
+        components_squares_sum = 0
 
         for component in self.__components:
-            summa += component * component
+            components_squares_sum += component * component
 
-        return math.sqrt(summa)
+        return math.sqrt(components_squares_sum)
 
     @override
     def __repr__(self) -> str:
-        return '{' + ", ".join(map(str, [round(component, 2) for component in self.__components])) + '}'
+        return '{' + ', '.join([str(round(component, 2)) for component in self.__components]) + '}'
 
     @override
     def __eq__(self, other: Vector) -> bool:
@@ -109,10 +107,10 @@ class Vector:
 
     def __check_index(self, index: int):
         if type(index) is not int:
-            raise TypeError(f'The index must be integer')
+            raise TypeError(f'Entered index type: {type(index)}, but the index must be integer')
 
         if index < 0 or index >= self.dimension:
-            raise ValueError(f'The index must be equal to or greater than 0 and less than {self.dimension}')
+            raise IndexError(f'Entered index = {index}. The index must be equal to or greater than 0 and less than {self.dimension}')
 
     def __getitem__(self, item):
         if isinstance(item, slice):

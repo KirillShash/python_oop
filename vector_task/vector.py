@@ -118,8 +118,7 @@ class Vector:
             raise TypeError(f'Entered index type: {type(index)}, but the index must be integer')
 
         if index >= self.dimension:
-            raise IndexError(
-                f'Entered index = {index}. The index must be less than {self.dimension}')
+            raise IndexError(f'Entered index = {index}. The index must be less than {self.dimension}')
 
     def __getitem__(self, item):
         if isinstance(item, slice):

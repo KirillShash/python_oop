@@ -130,7 +130,7 @@ class Vector:
 
     def __setitem__(self, index: int, value: int | float):
         if type(value) is not (int or float):
-            raise TypeError('The component must be integer or float')
+            raise TypeError(f'Entered value type: {type(value)}, but the component must be integer or float')
 
         self.__check_index(index)
 

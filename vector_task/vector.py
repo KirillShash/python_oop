@@ -29,8 +29,8 @@ class Vector:
 
         self.__components = [0.0] * dimension
 
-        for i, component in enumerate(components):
-            self.__components[i] = component
+        for i in range(min(dimension, len(components))):
+            self.__components[i] = components[i]
 
     @multimethod
     def __init__(self, components: List[int | float]):
@@ -91,13 +91,19 @@ class Vector:
         if not isinstance(other, type(self)):
             return NotImplemented
 
-        return Vector([i + j for i, j in zip_longest(self.__components, other.__components, fillvalue=0.0)])
+        vector = Vector(self)
+        vector += other
+
+        return vector
 
     def __sub__(self, other: Vector) -> Vector:
         if not isinstance(other, type(self)):
             return NotImplemented
 
-        return Vector([i - j for i, j in zip_longest(self.__components, other.__components, fillvalue=0.0)])
+        vector = Vector(self)
+        vector -= other
+
+        return vector
 
     def __imul__(self, scalar: float | int) -> Vector:
         if type(scalar) is not (int or float):
@@ -111,14 +117,19 @@ class Vector:
         if type(scalar) is not (int or float):
             raise TypeError('The scalar must be integer or float')
 
-        return Vector([component * scalar for component in self.__components])
+        vector = Vector(self)
+        vector *= scalar
+
+        return vector
 
     def __check_index(self, index: int):
         if type(index) is not int:
             raise TypeError(f'Entered index type: {type(index)}, but the index must be integer')
 
-        if index >= self.dimension:
-            raise IndexError(f'Entered index = {index}. The index must be less than {self.dimension}')
+        if index >= self.dimension or index <= -self.dimension - 1:
+            raise IndexError(
+                f'Entered index = {index}. The index must be less than {self.dimension} or greater than '
+                f'{-self.dimension - 1}.')
 
     def __getitem__(self, item):
         if isinstance(item, slice):
@@ -137,11 +148,11 @@ class Vector:
         self.__components[index] = value
 
     def reverse(self):
-        self.__components = [component * -1 for component in self.__components]
+        return self.__imul__(-1)
 
     def get_scalar_product(self, other: Vector) -> float:
-        if not isinstance(other, type(self)):
-            return NotImplemented
+        if type(other) is not Vector:
+            raise TypeError(f'Entered object type: {type(other)}, but the object must be Vector')
 
         min_dimension = min(self.dimension, other.dimension)
         product = 0

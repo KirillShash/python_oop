@@ -1,7 +1,7 @@
 from vector import Vector
 
 vector_1 = Vector(5)
-vector_2 = Vector(6, [1, 2, 3, 4])
+vector_2 = Vector(3, [1, 2, 3, 4])
 vector_3 = Vector(vector_1)
 
 print(f'Vector_1: {vector_1}')
@@ -41,6 +41,7 @@ print()
 
 print(f'Vector_4: {vector_4}')
 print(f'vector_4[4]: {vector_4[4]}')
+print(f'vector_4[-6]: {vector_4[-6]}')
 print(f'vector_4[1:4]: {vector_4[1:4]}')
 
 vector_4[4] = 22

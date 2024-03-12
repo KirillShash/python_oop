@@ -91,19 +91,13 @@ class Vector:
         if not isinstance(other, type(self)):
             return NotImplemented
 
-        vector = Vector(self)
-        vector += other
-
-        return vector
+        return Vector(self).__iadd__(other)
 
     def __sub__(self, other: Vector) -> Vector:
         if not isinstance(other, type(self)):
             return NotImplemented
 
-        vector = Vector(self)
-        vector -= other
-
-        return vector
+        return Vector(self).__isub__(other)
 
     def __imul__(self, scalar: float | int) -> Vector:
         if type(scalar) is not (int or float):
@@ -117,10 +111,7 @@ class Vector:
         if type(scalar) is not (int or float):
             raise TypeError('The scalar must be integer or float')
 
-        vector = Vector(self)
-        vector *= scalar
-
-        return vector
+        return Vector(self).__imul__(scalar)
 
     def __check_index(self, index: int):
         if type(index) is not int:
